@@ -14,7 +14,8 @@ import { TaskEntity } from './task/task.entity';
 @Module({
   imports: [
     ConfigModule.forRoot({
-      envFilePath: ['.env'],
+      // envFilePath: ['.env'],
+      envFilePath: ['.env.docker'],
       isGlobal: true,
     }),
     TypeOrmModule.forRootAsync({
