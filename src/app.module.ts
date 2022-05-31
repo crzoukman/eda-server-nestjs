@@ -20,8 +20,18 @@ import { TaskEntity } from './task/task.entity';
     TypeOrmModule.forRootAsync({
       inject: [ConfigService],
       useFactory: async (configService: ConfigService) => {
+        const isProduction =
+          configService.get('STAGE') === 'prod';
+
         return {
-          type: 'sqlite',
+          ssl: isProduction,
+          extra: {
+            ssl: isProduction
+              ? { rejectUnauthorized: false }
+              : null,
+          },
+          type: 'postgres',
+          // type: 'sqlite',
           host: configService.get('DB_HOST'),
           port: configService.get('DB_PORT'),
           database: configService.get('DB_NAME'),
@@ -32,6 +42,14 @@ import { TaskEntity } from './task/task.entity';
         };
       },
     }),
+    // TypeOrmModule.forRootAsync({
+    //   imports: [ConfigModule],
+    //   inject: [ConfigService],
+    //   useFactory: async (configService: ConfigService) => {
+
+    //     return {};
+    //   },
+    // }),
     UserModule,
     AuthModule,
     TaskModule,
