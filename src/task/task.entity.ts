@@ -15,22 +15,22 @@ export class TaskEntity {
   @Column()
   name: string;
 
-  @Column({ type: 'time' })
-  added: Date;
-
   @Column()
   type: string;
 
-  @Column({ type: 'time' })
+  @Column({ type: 'timestamp' })
+  added: Date;
+
+  @Column({ type: 'timestamp' })
   plannedStart: Date;
 
-  @Column({ type: 'time' })
+  @Column({ type: 'timestamp' })
   plannedEnd: Date;
 
-  @Column({ type: 'time', nullable: true })
+  @Column({ type: 'timestamp', nullable: true })
   startedTime: Date;
 
-  @Column({ type: 'time', nullable: true })
+  @Column({ type: 'timestamp', nullable: true })
   endedTime: Date;
 
   @Column({ default: false })

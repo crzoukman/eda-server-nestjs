@@ -31,7 +31,6 @@ import { TaskEntity } from './task/task.entity';
               : null,
           },
           type: 'postgres',
-          // type: 'sqlite',
           host: configService.get('DB_HOST'),
           port: configService.get('DB_PORT'),
           database: configService.get('DB_NAME'),
